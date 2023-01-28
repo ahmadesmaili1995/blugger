@@ -24,6 +24,7 @@ class post extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.star = this.star.bind(this);
+    this.trash = this.trash.bind(this);
   }
   star() {
     let favorites = [];
@@ -38,7 +39,11 @@ class post extends HTMLElement {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }
   trash() {
-    console.log("trash");
+    const id = this.getAttribute('postId');
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {method: 'DELETE'})
+      .then((res) => console.log(res.status))
+    .catch((error) => console.error(error));
+    this.remove();
   }
   
   connectedCallback() {
