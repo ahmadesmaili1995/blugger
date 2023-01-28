@@ -23,9 +23,19 @@ class post extends HTMLElement {
 
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.star = this.star.bind(this);
   }
   star() {
-    console.log("star");
+    let favorites = [];
+    const storageValue =  JSON.parse(localStorage.getItem('favorites'));
+    console.log(storageValue);
+    const id = this.getAttribute('postId');
+    if (storageValue === null) {
+      favorites[0] = id;
+    } else {
+      favorites = [...storageValue, id];
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   }
   trash() {
     console.log("trash");

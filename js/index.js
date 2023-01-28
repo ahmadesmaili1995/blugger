@@ -15,18 +15,12 @@ const loadPost = (posts) => {
 };
 
 
-const createPost = ({title, body}) => {
+const createPost = ({id, title, body}) => {
   const post = document.createElement('post-component');
   post.setAttribute('title', title);
-  post.setAttribute('text', body)
+  post.setAttribute('text', body);
+  post.setAttribute('postId', id);
 return post;
 }
 
-`    <div class="col col-md-4 mt-4" id="photo">
-    <div class="card">
-      <img src="https://via.placeholder.com/600/92c952" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">accusamus beatae ad facilis cum similique qui sunt</h5>
-      </div>
-    </div>
-  </div>`;
+
